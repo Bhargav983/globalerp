@@ -19,7 +19,12 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include('products.urls')), 
+<<<<<<< HEAD
     path('customers/', include('customers.urls')),
     path('sales/', include('sales.urls')),
 
+=======
+    path('customers/', include('customers.urls')), 
+    path('authentication/', include('authentication.urls')), 
+>>>>>>> 732fffb (added authentication by maniteja)
 ]
