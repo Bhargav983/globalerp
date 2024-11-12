@@ -1,2 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f6f8;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 850px;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        h2 {
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: #555555;
+            border-bottom: 1px solid #cccccc;
+            padding-bottom: 5px;
+        }
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            margin-bottom: 3px;
+            font-weight: bold;
+            color: #555555;
+        }
+        .form-group label.required::after {
+            content: " *";
+            color: red;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"] {
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333333;
+        }
+        .form-group button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
 
-<h1> Welcocme to Customers Page</h1>
+<div class="form-container">
+    <h1>Customer Details</h1>
+    <form action="/submit" method="POST">
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="name" class="required">Customer Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter customer name" required>
+            </div>
+            <div class="form-group">
+                <label for="print-name">Print Name</label>
+                <input type="text" id="print-name" name="print_name" placeholder="Enter name to print">
+            </div>
+            <div class="form-group">
+                <label for="opening-balance">Opening Balance</label>
+                <input type="number" id="opening-balance" name="opening_balance" placeholder="Enter opening balance">
+            </div>
+        </div>
+
+        <!-- Address Section -->
+        <h2>Address</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="address1">Address Line 1</label>
+                <input type="text" id="address1" name="address1" placeholder="Enter first line of address">
+            </div>
+            <div class="form-group">
+                <label for="address2">Address Line 2</label>
+                <input type="text" id="address2" name="address2" placeholder="Enter second line of address">
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="Enter city">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="area">Area</label>
+                <input type="text" id="area" name="area" placeholder="Enter area">
+            </div>
+            <div class="form-group">
+                <label for="dist">District</label>
+                <input type="text" id="dist" name="dist" placeholder="Enter district">
+            </div>
+            <div class="form-group">
+                <label for="state" class="required">State</label>
+                <input type="text" id="state" name="state" placeholder="Enter state" required>
+            </div>
+            <div class="form-group">
+                <label for="state-code" class="required">State Code</label>
+                <input type="text" id="state-code" name="state_code" placeholder="Enter state code" required>
+            </div>
+        </div>
+
+        <!-- Contact Details Section -->
+        <h2>Contact Details</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile</label>
+                <input type="tel" id="mobile" name="mobile" placeholder="Enter mobile number">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter email address">
+            </div>
+        </div>
+
+        <!-- Bank Details Section -->
+        <h2>Bank Details</h2>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="bank-account">Bank Account No</label>
+                <input type="text" id="bank-account" name="bank_account_no" placeholder="Enter bank account number">
+            </div>
+            <div class="form-group">
+                <label for="bank-name">Bank Name</label>
+                <input type="text" id="bank-name" name="bank_name" placeholder="Enter bank name">
+            </div>
+            <div class="form-group">
+                <label for="ifsc">IFSC</label>
+                <input type="text" id="ifsc" name="ifsc" placeholder="Enter IFSC code">
+            </div>
+            <div class="form-group">
+                <label for="branch">Branch</label>
+                <input type="text" id="branch" name="branch" placeholder="Enter bank branch">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="gst-no">GST No</label>
+                <input type="text" id="gst-no" name="gst_no" placeholder="Enter GST number">
+            </div>
+            <div class="form-group">
+                <label for="pancard">PAN Card</label>
+                <input type="text" id="pancard" name="pancard" placeholder="Enter PAN card number">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
