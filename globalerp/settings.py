@@ -39,11 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'products',
     'customers',
-<<<<<<< HEAD
     'sales'
-=======
     'authentication',
->>>>>>> 732fffb (added authentication by maniteja)
 ]
 
 MIDDLEWARE = [
