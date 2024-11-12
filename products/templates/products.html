@@ -1,11 +1,183 @@
-<!-- app_name/templates/home.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Products Page</title>
+    <meta http-equiv="X-UA-Compatible=IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 100%;
+            margin: 20px;
+            padding: 20px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .input-group .btn {
+            border-radius: 0;
+        }
+        .btn-add {
+            background-color: #28a745; /* Blue */
+            color: #fff;
+        }
+        .btn-add:hover {
+            background-color: #218838; /* Darker Blue */
+        }
+        .btn-modify {
+            background-color: #007bff; 
+            color: #fff;
+        }
+        .btn-modify:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+    
 </head>
-<body>
-    <h1>Welcome to Products Page</h1>
+<body class="bg-light">
+    <div class="container mt-3">
+        <h2 class="text-center mb-4">Product Details</h2>
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Product Name, Short Name and HSN Code -->
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label for="product_name" class="form-label">Product Name:</label>
+                    <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Enter product name" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="short_name" class="form-label">Short Name:</label>
+                    <input type="text" class="form-control" id="short_name" name="short_name" placeholder="Enter short name" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="hsn_code" class="form-label">HSN Code:</label>
+                    <input type="text" class="form-control" id="hsn_code" name="hsn_code" placeholder="Enter HSN code" required>
+                </div>
+            </div>
+
+            <!-- Tax Slab, Product Company and Product Category -->
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label for="tax_slab" class="form-label">Tax Slab:</label>
+                    <div class="input-group">
+                        <select class="form-select" id="tax_slab" name="tax_slab" required>
+                            <option selected>Choose...</option>
+                            <option value="5%">5%</option>
+                            <option value="12%">12%</option>
+                            <option value="18%">18%</option>
+                            <option value="28%">28%</option>
+                        </select>
+                        <button class="btn btn-add" type="button">+</button>
+                        <button class="btn btn-modify" type="button">✎</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="product_company" class="form-label">Product Company:</label>
+                    <div class="input-group">
+                        <select class="form-select" id="product_company" name="product_company" required>
+                            <option selected>Choose...</option>
+                            <option value="Company A">Company A</option>
+                            <option value="Company B">Company B</option>
+                        </select>
+                        <button class="btn btn-add" type="button">+</button>
+                        <button class="btn btn-modify" type="button">✎</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="product_category" class="form-label">Product Category:</label>
+                    <div class="input-group">
+                        <select class="form-select" id="product_category" name="product_category" required>
+                            <option selected>Choose...</option>
+                            <option value="Category 1">Category 1</option>
+                            <option value="Category 2">Category 2</option>
+                        </select>
+                        <button class="btn btn-add" type="button">+</button>
+                        <button class="btn btn-modify" type="button">✎</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primary Unit, Secondary Unit and Conversion Factor -->
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label for="primary_unit" class="form-label">Primary Unit:</label>
+                    <div class="input-group">
+                        <select class="form-select" id="primary_unit" name="primary_unit" required>
+                            <option selected>Choose...</option>
+                            <option value="Pcs">Pcs</option>
+                            <option value="Kg">Kg</option>
+                        </select>
+                        <button class="btn btn-add" type="button">+</button>
+                        <button class="btn btn-modify" type="button">✎</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="secondary_unit" class="form-label">Secondary Unit:</label>
+                    <input type="text" class="form-control" id="secondary_unit" name="secondary_unit" placeholder="Enter secondary unit">
+                </div>
+                <div class="col-md-4">
+                    <label for="conversion_factor" class="form-label">Conversion Factor:</label>
+                    <input type="number" step="0.01" class="form-control" id="conversion_factor" name="conversion_factor" placeholder="Enter conversion factor" required>
+                </div>
+            </div>
+
+            <!-- Purchase Price, Sale Price and MRP -->
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label for="purchase_price" class="form-label">Purchase Price:</label>
+                    <input type="number" step="0.01" class="form-control" id="purchase_price" name="purchase_price" placeholder="Enter purchase price" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="sale_price" class="form-label">Sale Price:</label>
+                    <input type="number" step="0.01" class="form-control" id="sale_price" name="sale_price" placeholder="Enter sale price" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="mrp" class="form-label">MRP:</label>
+                    <input type="number" step="0.01" class="form-control" id="mrp" name="mrp" placeholder="Enter MRP" required>
+                </div>
+            </div>
+
+            <!-- Barcode, Min Stock and Max Stock -->
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label for="barcode" class="form-label">Barcode:</label>
+                    <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Enter barcode" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="min_stock" class="form-label">Min Stock:</label>
+                    <input type="number" class="form-control" id="min_stock" name="min_stock" placeholder="Enter minimum stock" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="max_stock" class="form-label">Max Stock:</label>
+                    <input type="number" class="form-control" id="max_stock" name="max_stock" placeholder="Enter maximum stock" required>
+                </div>
+            </div>
+
+            <!-- Discount %, Opening Stock Qty and Opening Stock Value -->
+            <div class="row g-3 mb-3">
+                <div class="col-md-4">
+                    <label for="discount" class="form-label">Discount %:</label>
+                    <input type="number" step="0.01" class="form-control" id="discount" name="discount" placeholder="Enter discount %" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="opening_stock_qty" class="form-label">Opening Stock Qty/Alt Qty:</label>
+                    <input type="text" class="form-control" id="opening_stock_qty" name="opening_stock_qty" placeholder="Enter opening stock quantity" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="opening_stock_value" class="form-label">Opening Stock Value:</label>
+                    <input type="number" step="0.01" class="form-control" id="opening_stock_value" name="opening_stock_value" placeholder="Enter opening stock value" required>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
