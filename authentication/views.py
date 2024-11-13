@@ -1,12 +1,13 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def authentication(request):
     return render(request, 'authentication.html')
 
-
+@login_required
 def home_view(request):
     return render(request, 'home.html')
 
@@ -26,25 +27,11 @@ def login_view(request):
 
 def register_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        mobile = request.POST['mobile']
-        password = request.POST['password']
-
-        # Check if the username is already taken
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Username is already taken')
-            return redirect('register')
-
-        # Check if the email is already taken
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Email is already registered')
-            return redirect('register')
-
-        # Create a new user
-        user = User.objects.create_user(username=username, email=email, password=password)
-        user.save()
-
-        messages.success(request, 'Account created successfully. Please log in.')
-        return redirect('login')
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account created successfully.')
+            return redirect('login')
+    else:
+        form = UserCreationForm()
     return render(request, 'register.html')

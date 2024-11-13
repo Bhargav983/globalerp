@@ -73,34 +73,36 @@
             <div class="col-md-8 col-lg-6">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h3>Registration Form</h3>
+                        <h3>Registration Page</h3>
                     </div>
                     <div class="card-body p-4">
-                        <form action="/register" method="post">
+                        <form action="{% url 'register' %}" method="post">
+                            {% csrf_token %}
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
+                                <label for="username" class="form-label" style="font-weight: bold;">Username:</label>
                                 <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required>
                             </div>
                             <div class="mb-3">
-                                <label for="mobilename" class="form-label">Mobile Number</label>
+                                <label for="mobilename" class="form-label" style="font-weight: bold;">Mobile Number:</label>
                                 <input type="text" id="mobilename" name="mobilename" class="form-control" placeholder="Enter your mobile number" required>
                             </div>
                             <div class="mb-3">
-                                <label for="mail" class="form-label">Email</label>
+                                <label for="mail" class="form-label" style="font-weight: bold;">Email:</label>
                                 <input type="email" id="mail" name="mail" class="form-control" placeholder="Enter your email" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label" style="font-weight: bold;">Password:</label>
                                 <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required>
-                            </div>
+                            </div>                            
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary">Register</button>
                             </div>
+                            <!-- Added margin to separate the paragraph -->
+                            <div class="d-flex justify-content-center" style="margin-top: 10px;">
+                                <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+                            </div>
                         </form>
-                    </div>
-                    <div class="card-footer login-link">
-                        <p>Already have an account? <a href="/login">Login here</a></p>
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>
